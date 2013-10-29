@@ -263,7 +263,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     NSString* target = (NSString*)[command.arguments objectAtIndex:0];
     NSError* __autoreleasing err = nil;
     // Extract the path part out of a file: URL.
-    NSString* filePath = [target hasPrefix:@"/"] ? [target copy] : [[NSURL URLWithString:target] path];
+    NSString* filePath = [target hasPrefix:@"/"] ? [target copy] : (NSString *)[[NSURL URLWithString:target] path];
 
     // Memory map the file so that it can be read efficiently even if it is large.
     NSData* fileData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&err];
